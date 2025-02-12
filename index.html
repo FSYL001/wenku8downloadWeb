@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wenke8轻小说下载站</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.helloimg.com/i/2025/02/11/67aac15b97398.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+        .character {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            max-height: 90vh;
+            opacity: 1;
+            z-index: 0;
+            pointer-events: none;
+        }
+        header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            z-index: 2;
+        }
+        h1 {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 4px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 32px;
+        }
+        main {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .link-container {
+            margin-top: 20px;
+        }
+        .link-container a {
+            display: block;
+            margin: 5px 0;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        #buttonContainer {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #buttonContainer button {
+            display: block;
+            margin: 5px 0;
+        }
+    </style>
+    <script>
+        function generateDownloadLink() {
+            const bookId = document.getElementById('bookId').value;
+            const links = [
+                { name: "GBK 线路1", url: `https://dl.wenku8.com/down.php?type=txt&node=1&id=${bookId}` },
+                { name: "GBK 线路2", url: `https://dl.wenku8.com/down.php?type=txt&node=2&id=${bookId}` },
+                { name: "UTF8 线路1", url: `https://dl.wenku8.com/down.php?type=utf8&node=1&id=${bookId}` },
+                { name: "UTF8 线路2", url: `https://dl.wenku8.com/down.php?type=utf8&node=2&id=${bookId}` },
+                { name: "繁体 线路1", url: `https://dl.wenku8.com/down.php?type=big5&node=1&id=${bookId}` },
+                { name: "繁体 线路2", url: `https://dl.wenku8.com/down.php?type=big5&node=2&id=${bookId}` }
+            ];
+            
+            document.getElementById('downloadLinks').innerHTML = links.map(link => `
+                <div class="link-container">
+                    <a href="${link.url}" target="_blank">${link.name}</a>
+                </div>
+            `).join('');
+        }
+
+        function toggleButtons() {
+            const container = document.getElementById('buttonContainer');
+            container.style.display = container.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>风神翼龙のwenku8下载站</h1>
+        <img src="https://www.helloimg.com/i/2025/02/11/67aac53e2a2f6.jpg" alt="右上角图片" style="max-height: 50px;" onclick="toggleButtons()">
+        <div id="buttonContainer">
+            <button onclick="window.location.href='https://space.bilibili.com/450000657?spm_id_from=333.337.0.0'">跳转B站个人主页</button>
+            <button onclick="window.location.href='https://www.douyin.com/user/MS4wLjABAAAAzWfG071S0Ol0_wF3xT1i0oL5eSpPdiYZZY_gKib9S_M?from_tab_name=main'">跳转抖音个人主页</button>
+        </div>
+    </header>
+    <main>
+        <input type="text" id="bookId" placeholder="请输入书号">
+        <button onclick="generateDownloadLink()">生成下载链接</button>
+        <div id="downloadLinks"></div>
+    </main>
+    <img class="character" src="https://www.helloimg.com/i/2025/02/11/67aac60fd9da2.png" alt="右下角人物立绘">
+</body>
+</html>
